@@ -6,10 +6,10 @@ package com.example.mvp.mvp_kotlin.calculator
 interface CalculatorContract{
 
     interface View {
-
+        fun updateResult(result:String)
     }
 
     interface Presenter{
-
+        fun calculate(value:String): String
     }
 }

@@ -6,6 +6,7 @@ import butterknife.BindView
 import butterknife.OnClick
 import com.example.mvp.mvp_kotlin.R
 import com.example.mvp.mvp_kotlin.base.BaseActivity
+import com.example.mvp.mvp_kotlin.calculator.CalculatorActivity
 import com.example.mvp.mvp_kotlin.di.component.DaggerHomeComponent
 import com.example.mvp.mvp_kotlin.di.component.HomeComponent
 import com.example.mvp.mvp_kotlin.github.GitHubActivity
@@ -40,7 +41,8 @@ class HomeActivity : BaseActivity(), HomeContract.View {
 
     @OnClick(R.id.btn_calkulator)
     fun calculatorBtn() {
-
+        val intent = Intent(this,CalculatorActivity::class.java)
+        startActivity(intent)
     }
 
     @OnClick(R.id.btn_network)

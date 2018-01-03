@@ -7,7 +7,9 @@ import butterknife.Unbinder
 import com.example.mvp.mvp_kotlin.ApplicationBase
 import com.example.mvp.mvp_kotlin.di.component.ApplicationComponent
 import com.example.mvp.mvp_kotlin.di.module.ActivityModule
-import kotlin.reflect.KFunction0
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
+
 
 /**
  * Created by nikolascatur on 15/12/17.
@@ -17,6 +19,9 @@ abstract class BaseActivity : AppCompatActivity() {
 
     var unbinder: Unbinder? = null
 
+    val uiSubscription:CompositeDisposable = CompositeDisposable()
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -25,6 +30,15 @@ abstract class BaseActivity : AppCompatActivity() {
         setup()
         getApplicationComponent().inject(this)
 
+    }
+
+    fun addUiSubscription(disposable: Disposable) : Disposable{
+        uiSubscription.add(disposable)
+        return uiSubscription
+    }
+
+    fun clearAllSubscription(){
+        uiSubscription.clear()
     }
 
     abstract fun setup()
@@ -37,6 +51,7 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         unbinder!!.unbind()
+        clearAllSubscription()
     }
 }
 
