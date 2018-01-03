@@ -1,4 +1,4 @@
-# mvpkotlin
+# MVP - Kotlin
 MVP (Model View Presenter) simple example write with full kotlin
 
 This project example include
