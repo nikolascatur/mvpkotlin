@@ -1,7 +1,11 @@
 package com.example.mvp.mvp_kotlin.base
 
+import com.example.mvp.mvp_kotlin.model.Contributor
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
+import io.reactivex.observers.DisposableObserver
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.logging.HttpLoggingInterceptor.*
@@ -14,6 +18,8 @@ import java.util.concurrent.TimeUnit
  * Created by nikolascatur on 21/12/17.
  */
 abstract class BaseNetwork<T> {
+
+    val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
     fun interceptor(): HttpLoggingInterceptor = HttpLoggingInterceptor()
             .setLevel(HttpLoggingInterceptor.Level.BODY)
@@ -36,6 +42,12 @@ abstract class BaseNetwork<T> {
 
     fun networkService():T = provideRetrovit().create(getApi())
 
+    fun clearAllSubscription() = compositeDisposable.clear()
+
+    fun addSubscription(disposable: Disposable): Disposable {
+        compositeDisposable.add(disposable)
+        return compositeDisposable
+    }
 
     abstract fun getBaseUrl():String
 

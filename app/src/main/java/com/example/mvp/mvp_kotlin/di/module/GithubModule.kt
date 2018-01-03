@@ -1,8 +1,10 @@
 package com.example.mvp.mvp_kotlin.di.module
 
+import com.example.mvp.mvp_kotlin.di.PerActivity
 import com.example.mvp.mvp_kotlin.domain.LoadGitHubContributor
 import dagger.Module
 import dagger.Provides
+import javax.inject.Named
 import javax.inject.Singleton
 
 /**
@@ -12,7 +14,6 @@ import javax.inject.Singleton
 class GithubModule {
 
     @Provides
-    @Singleton
     fun provideLoadContributor(): LoadGitHubContributor = LoadGitHubContributor()
 
 }

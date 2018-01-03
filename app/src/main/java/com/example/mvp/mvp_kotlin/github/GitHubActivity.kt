@@ -1,17 +1,22 @@
 package com.example.mvp.mvp_kotlin.github
 
+import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.RecyclerView
+import butterknife.BindView
 import com.example.mvp.mvp_kotlin.R
 import com.example.mvp.mvp_kotlin.base.BaseActivity
 import com.example.mvp.mvp_kotlin.di.component.DaggerGitHubComponent
-import com.example.mvp.mvp_kotlin.di.component.GitHubComponent
 import com.example.mvp.mvp_kotlin.di.module.GithubModule
-import com.example.mvp.mvp_kotlin.domain.LoadGitHubContributor
+import com.example.mvp.mvp_kotlin.model.Contributor
 import javax.inject.Inject
 
 /**
  * Created by nikolascatur on 27/12/17.
  */
 class GitHubActivity() : BaseActivity(), GitHubContract.View {
+
+    @BindView(R.id.rv_image)
+    lateinit var rvImage: RecyclerView
 
     @Inject
     lateinit var gitHubPresenter: GitHubPresenter
@@ -25,12 +30,14 @@ class GitHubActivity() : BaseActivity(), GitHubContract.View {
     override fun setup() {
         initInjection()
         initView()
+        initContent()
     }
 
     override fun getLayout(): Int = R.layout.activity_github
 
     fun initView() {
         gitHubPresenter.setView(this)
+
     }
 
     fun initInjection() {
@@ -38,4 +45,12 @@ class GitHubActivity() : BaseActivity(), GitHubContract.View {
         gitHubComponent.Inject(this)
     }
 
+    fun initContent() {
+        gitHubPresenter.loadContent()
+    }
+
+    override fun attachContent(contributors: List<Contributor>) {
+        rvImage.layoutManager = GridLayoutManager(this,2)
+        rvImage.adapter = GitHubAdapter(this,contributors)
+    }
 }
