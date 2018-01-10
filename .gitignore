@@ -8,3 +8,5 @@
 /.idea/libraries
 .idea
 build/
+build/android-profile
+app.iml
