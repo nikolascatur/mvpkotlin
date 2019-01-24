@@ -1,22 +1,18 @@
 package com.example.mvp.mvp_kotlin.github
 
 import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.RecyclerView
-import butterknife.BindView
 import com.example.mvp.mvp_kotlin.R
 import com.example.mvp.mvp_kotlin.base.BaseActivity
 import com.example.mvp.mvp_kotlin.di.component.DaggerGitHubComponent
 import com.example.mvp.mvp_kotlin.di.module.GithubModule
 import com.example.mvp.mvp_kotlin.model.Contributor
+import kotlinx.android.synthetic.main.activity_github.*
 import javax.inject.Inject
 
 /**
  * Created by nikolascatur on 27/12/17.
  */
 class GitHubActivity() : BaseActivity(), GitHubContract.View {
-
-    @BindView(R.id.rv_image)
-    lateinit var rvImage: RecyclerView
 
     @Inject
     lateinit var gitHubPresenter: GitHubPresenter

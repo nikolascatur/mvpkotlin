@@ -17,7 +17,7 @@
             >
 
             <EditText
-                android:id="@+id/et_input"
+                android:id="@+id/etInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="14dp"
@@ -26,7 +26,7 @@
                 />
 
             <TextView
-                android:id="@+id/tv_result"
+                android:id="@+id/tvResult"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="30dp"

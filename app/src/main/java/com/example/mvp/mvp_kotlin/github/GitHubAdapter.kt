@@ -2,17 +2,14 @@ package com.example.mvp.mvp_kotlin.github
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import butterknife.BindView
-import butterknife.ButterKnife
-import butterknife.OnClick
 import com.example.mvp.mvp_kotlin.R
 import com.example.mvp.mvp_kotlin.model.Contributor
 import com.example.mvp.mvp_kotlin.util.ImageLoader
+import kotlinx.android.synthetic.main.item_github.view.*
 
 /**
  * Created by nikolascatur on 29/12/17.
@@ -31,22 +28,12 @@ class GitHubAdapter(val context: Context,val listImage: List<Contributor>?) : Re
     }
 
     class GitHubViewHolder(val context: Context, itemView: View) : RecyclerView.ViewHolder(itemView) {
-        @BindView(R.id.iv_image)
-        lateinit var ivImage:ImageView
-
-        init {
-            ButterKnife.bind(this,itemView)
-        }
 
         fun bindData(item: Contributor) {
-            ImageLoader.showImage(context,item.avatar_url,ivImage)
+            ImageLoader.showImage(context,item.avatar_url,itemView.ivImage)
 
         }
 
-        @OnClick(R.id.iv_image)
-        fun clickItem(){
-
-        }
 
     }
 

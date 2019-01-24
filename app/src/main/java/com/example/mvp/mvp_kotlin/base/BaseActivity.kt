@@ -2,8 +2,6 @@ package com.example.mvp.mvp_kotlin.base
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import butterknife.ButterKnife
-import butterknife.Unbinder
 import com.example.mvp.mvp_kotlin.ApplicationBase
 import com.example.mvp.mvp_kotlin.di.component.ApplicationComponent
 import com.example.mvp.mvp_kotlin.di.module.ActivityModule
@@ -17,8 +15,6 @@ import io.reactivex.disposables.Disposable
 
 abstract class BaseActivity : AppCompatActivity() {
 
-    var unbinder: Unbinder? = null
-
     val uiSubscription:CompositeDisposable = CompositeDisposable()
 
 
@@ -26,7 +22,6 @@ abstract class BaseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(getLayout())
-        unbinder = ButterKnife.bind(this)
         setup()
         getApplicationComponent().inject(this)
 
@@ -50,7 +45,6 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        unbinder!!.unbind()
         clearAllSubscription()
     }
 }

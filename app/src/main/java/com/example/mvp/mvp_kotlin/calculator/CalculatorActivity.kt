@@ -1,8 +1,5 @@
 package com.example.mvp.mvp_kotlin.calculator
 
-import android.widget.EditText
-import android.widget.TextView
-import butterknife.BindView
 import com.example.mvp.mvp_kotlin.R
 import com.example.mvp.mvp_kotlin.base.BaseActivity
 import com.example.mvp.mvp_kotlin.di.component.DaggerHomeComponent
@@ -15,12 +12,6 @@ import javax.inject.Inject
  * Created by nikolascatur on 19/12/17.
  */
 class CalculatorActivity : BaseActivity(), CalculatorContract.View {
-    @BindView(R.id.et_input)
-    lateinit var etInput: EditText
-
-    @BindView(R.id.tv_result)
-    lateinit var tvResult: TextView
-
     @Inject
     lateinit var calculatorPresenter: CalculatorPresenter
 
@@ -56,7 +47,7 @@ class CalculatorActivity : BaseActivity(), CalculatorContract.View {
     }
 
     override fun updateResult(result: String) {
-        tv_result.setText(result)
+        tvResult.setText(result)
     }
 
 }
